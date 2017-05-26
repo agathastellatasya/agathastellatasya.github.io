@@ -1,5 +1,4 @@
-# Tugas 1 Ca-IRK 2016
-## Struktur Compiler
+# Struktur Compiler
 
 Compiler adalah sebuah program yang dapat menerjemahkan kode-kode yang ditulis dalam bahasa pemrograman menjadi bahasa yang dimengerti oleh mesin (computer) yang biasanya memiliki bentuk dalam kode biner dan kemudian dikenal sebagai *object code*. Mengapa bahasa pemrograman perlu diterjemahkan menjadi bahasa mesin? Jawaban paling umum adalah karena dengan mengubah bahasa pemrograman menjadi bahasa mesin, kita dapat membuat sebuah *executable program*.
 
@@ -7,7 +6,7 @@ Compiler menjembatani program yang ditulis dalam bahasa pemrograman dengan hardw
 
 Production Quality Compiler-Compiler Project (PQCC) memperkenalkan istilah *front end*, *middle end*, dan *back end*. Tidak ada batas yang jelas di mana perbatasan dari ketiga istilah ini. Hampir semua compiler (kecuali compiler kecil) memiliki lebih dari dua fase ini.
 
-### Tiga Fase Struktur Compiler
+## Tiga Fase Struktur Compiler
 ![Images tiga fase struktur compiler](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Compiler_design.svg/550px-Compiler_design.svg.png)
 
 * *Front end*: memverifikasi sintaks dari kode program yang dibuat oleh programmer. Jika ada kesalahan sintaks, maka akan dihasilkan kesalahan dan peringatan. Aspek dari *front end* adalah *lexical analytics*, *syntax analytics*, dan *semantic analytics*.
@@ -16,7 +15,7 @@ Production Quality Compiler-Compiler Project (PQCC) memperkenalkan istilah *fron
 
 * *Back end*: mengambil hasil *output* dari *middle end*. Menghasilkan kode *assembly* yang bergantung pada target dan melakukan alokasi register dalam proses. Dalam fase ini, dilakukan pengoptimalan terhadap penggunaan kode target perangkat keras, misalnya dengan mengetahui bagaimana cara agar program dapat bekerja secara paralel dengan mengisi slot delay. Biasanya output dari *back end* adalah kode mesin untuk prosesor dan sistem operasi tertentu.
 
-#### *Front End*
+### *Front End*
 ![Images front end](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Xxx_Scanner_and_parser_example_for_C.gif/400px-Xxx_Scanner_and_parser_example_for_C.gif)
 
 *Front end* compilator menganalsis kode sumber untuk membangun representasi internal program yang disebut IR (*Intermediate Representation*). Front end compilator juga mengelola tabel simbol yaitu sebuah struktur data yang memetakan setiap simbol dalam source code ke informasi terkait misalnya lokasi, jenis, dan *scope*.
@@ -35,7 +34,7 @@ Dalam beberapa kasus, digunakan fase tambahan, terutama *line reconstruction* da
 
 * *Semantic analysis* adalah fase di mana compiler menambahkan informasi semantik ke *pohon parse* dan membangun tabel simbol. Fase ini melakukan pemeriksaan semantic, misalnya *type checking* (misalnya pengecekan jenis *error*), atau *object binding* (variable asosiasi dan referensi fungsi dengan definisinya), atau *definitie assignment* (mewajibkan semua variable lokal untuk diinisialisasi sebelum digunakan), menolak program yang salah atau memberikan *warning*. Karena fase ini biasanya membutuhkan parse tree yang lengkap, fase ini biasanya ada setelah fase *parsing*.
 
-#### *Back End*
+### *Back End*
 
 Istilah ini kadang membingungkan dan mirip dengan *code generator* karena fungsinya yang *overlapping* dalam menghasilkan kode *assembly*. Fase utama dari tahap back end adalah sebagai berikut:
 
