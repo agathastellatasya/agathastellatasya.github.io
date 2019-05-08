@@ -73,7 +73,7 @@
 }
 
 .menu-container:hover {
-  background-color: white;
+  background-color: #E8F4FB;
   color: black;
 } 
 
@@ -121,13 +121,20 @@ img {
 }
 
 .removeButtonContainer {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+.removeButtonContainer img:hover {
+  opacity:0.4; /* how much transparent you want image to be*/
+  filter:alpha(opacity=40); /* browser fix*/
+  -webkit-opacity:0.4; /*vendor prefixes for website browsers*/
+  -moz-opacity:0.4; /* same as above, edited thankx to @ Daniel_Lisik  */
 }
 
 .titleContainer {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .fullContainer {

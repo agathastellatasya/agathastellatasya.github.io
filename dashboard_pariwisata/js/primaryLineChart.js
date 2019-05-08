@@ -151,10 +151,10 @@ function drawmultiSeriesLineChartCharts(config) {
         })
         .style("stroke", function (d) {
             return z(d.id);
-        }).style("fill", "none").style("stroke-width", "4px");
+        }).style("fill", "none").style("stroke-width", "3px");
   
     // CBT: for wicket Circles in multiseries line chart
-    var circleRadius = 5;
+    var circleRadius = 7;
     var keys = Object.keys(columnsInfo);
     var element = g.append("g")
         .selectAll("g")
@@ -262,7 +262,7 @@ function drawmultiSeriesLineChartCharts(config) {
 
     circles.on("mousemove", function () {
         var currentEl = d3.select(this);
-        currentEl.attr("r", 7);
+        currentEl.attr("r", 9);
         d3.selectAll("#circletooltip_" + mainDivName)
             .attr("transform", function (d) {
             var mouseCoords = d3.mouse(this.parentNode);
@@ -288,7 +288,7 @@ function drawmultiSeriesLineChartCharts(config) {
 
     circles.on("mouseout", function () {
         var currentEl = d3.select(this);
-        currentEl.attr("r", 5);
+        currentEl.attr("r", circleRadius);
         d3.select("#circletooltip_" + mainDivName)
             .style("opacity", function () {
             return 0;
