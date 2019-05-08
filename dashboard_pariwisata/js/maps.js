@@ -116,7 +116,7 @@ imageSeries.data = [{
 }];
 
 var info = document.getElementById("info");
-info.innerHTML = "<h5>10 Bali Baru</h5>\
+info.innerHTML = "<h5>10 Bali Baru (sejak 2016)</h5>\
 <p>Kalau Kamu mendengar istilah 10 Bali Baru, apa yang ada dibenakmu? Apakah Kamu berpikir, 10 destinasi wisata Indonesia yang bakal dibikin seperti Bali dengan segala gemerlap fasilitas dan kemewahan yang ada di sana?\
 <br>\
 Kalau Kamu berpikir demikian, sayang sekali kali ini jawabanmu kurang tepat. Jadi gini, pemerintah Indonesia dalam hal ini Kementrian Pariwisata lagi gencar-gencarnya promosikan destinasi wisata Indonesia. Nah, penggunaan istilah 10 Bali Baru itu lebih untuk memberi tekanan agar performa masing-masing destinasi wisata itu seperti layaknya Bali, yang setahun mampu mendatangkan 4 juta wisatawan mancanegara dan dari tahun ke tahun naik signifikan.\
