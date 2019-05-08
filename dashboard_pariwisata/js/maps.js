@@ -27,12 +27,12 @@ polygonSeries.useGeodata = true;
 
 // Configure series
 var polygonTemplate = polygonSeries.mapPolygons.template;
-polygonTemplate.tooltipText = "{name}";
+// polygonTemplate.tooltipText = "{name}";
 polygonTemplate.fill = am4core.color("#74B266");
 
 // Create hover state and set alternative fill color
-var hs = polygonTemplate.states.create("hover");
-hs.properties.fill = am4core.color("#a1dd70");
+// var hs = polygonTemplate.states.create("hover");
+// hs.properties.fill = am4core.color("#a1dd70");
 
 // Exclude
 polygonSeries.exclude = ["BN", "TL", "MY-12", "MY-13"];
@@ -55,6 +55,8 @@ circle.stroke = am4core.color("#FFFFFF");
 circle.strokeWidth = 2;
 circle.nonScaling = true;
 circle.tooltipText = "{title}";
+
+imageSeries.mapImages.template.cursorOverStyle = am4core.MouseCursorStyle.pointer;
 
 // Set property fields
 imageSeriesTemplate.propertyFields.latitude = "latitude";
