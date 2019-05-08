@@ -248,7 +248,7 @@ function drawmultiSeriesLineChartCharts(config) {
         var yPos = 0;
         d3.selectAll("#circletooltipText_" + mainDivName).append("tspan").attr("x", 0).attr("y", yPos * 10).attr("dy", "1.9em").text(label.xAxis + ":  " + tooltipData.over);
         yPos = yPos + 1;
-        d3.selectAll("#circletooltipText_" + mainDivName).append("tspan").attr("x", 0).attr("y", yPos * 10).attr("dy", "1.9em").text(label.yAxis + ":  " + tooltipData.runs);
+        d3.selectAll("#circletooltipText_" + mainDivName).append("tspan").attr("x", 0).attr("y", yPos * 10).attr("dy", "1.9em").text(label.yAxis + ":  " + tooltipData.runs.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.'));
         
         //CBT: calculate width of the text based on characters
         var dims = helpers.getDimensions("circletooltipText_" + mainDivName);
