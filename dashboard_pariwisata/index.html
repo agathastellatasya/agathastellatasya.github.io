@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> -->
+		<title>
+			Dashboard
+		</title>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<script src="./js/primaryLineChart.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	</head>
+	<body class="body">
+		<div class="nav">
+			<a href="page1.html" style="text-decoration: none; margin-top: 56px; display: flex; flex-direction: column">
+				<div class="menu-container">
+				    <div class="img-container">
+				    	<img src="address.png">
+				    </div>
+				    <p class="menu-text">10 Bali Baru</p>
+				</div>
+			</a>
+			<a href="index.html" style="text-decoration: none; display: flex; flex-direction: column">
+				<div class="menu-container" id="active">
+					<div class="img-container">
+				    	<img src="dashboard.png">
+				    </div>
+				    <p class="menu-text">Dashboard</p>
+				</div>
+			</a>
+		</div>
+		<div class="root-container">
+			<!-- <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #1da1f2">
+				<a class="navbar-brand" href="#">Dashboard Perkembangan Pariwisata</a>
+			</nav> -->
+			<h2 style="margin: 1%;">Perkembangan Pariwisata</h2>
+			<div class="middleContainer">
+				<div class="firstContainer">
+					<div class="lineChart">
+						<div class="primaryLineChartContainer">
+							<h6>Jumlah Kunjungan Wisatawan Mancanegara dengan Destinasi Negara-Negara ASEAN</h6>
+							<div id="primaryLineChart">
+							</div>
+						</div>
+					</div>
+					<div class="filterContainer">
+						<div class="filterPrimary">
+							<div class="filterYear">
+								<div class="filterYearLeft">
+									<label for="from">from:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+									<select class="form-control" id="from">
+										<option selected value="2010">2010</option>
+										<option value="2011">2011</option>
+										<option value="2012">2012</option>
+										<option value="2013">2013</option>
+										<option value="2014">2014</option>
+										<option value="2015">2015</option>
+										<option value="2016">2016</option>
+										<option disabled value="2017">2017</option>
+									</select>
+								</div>
+
+								<div class="filterYearRight">
+									<label for="to">to:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+									<select class="form-control" id="to">
+										<option disabled value="2010">2010</option>
+										<option value="2011">2011</option>
+										<option value="2012">2012</option>
+										<option value="2013">2013</option>
+										<option value="2014">2014</option>
+										<option value="2015">2015</option>
+										<option value="2016">2016</option>
+										<option selected value="2017">2017</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="filterCountry">
+								<div class="filterCountryLeft">
+									<label for="">Country</label>
+									<div class="checkbox">
+										<label><input type="checkbox" value="thailand" checked>&nbsp;&nbsp;Thailand</label>
+									</div>
+									<div class="checkbox">
+										<label><input type="checkbox" value="malaysia" checked>&nbsp;&nbsp;Malaysia</label>
+									</div>
+									<div class="checkbox">
+										<label><input type="checkbox" value="singapore" checked>&nbsp;&nbsp;Singapur</label>
+									</div>
+									<div class="checkbox">
+										<label><input type="checkbox" value="indonesia" checked>&nbsp;&nbsp;Indonesia</label>
+									</div>
+									<div class="checkbox">
+										<label><input type="checkbox" value="vietnam" checked>&nbsp;&nbsp;Vietnam</label>
+									</div>
+								</div>
+
+								<div class="filterCountryRight">
+									<label for="" style="color: white;">Country</label>
+									<div class="checkbox">
+										<label><input type="checkbox" value="phillipine" checked>&nbsp;&nbsp;Filipina</label>
+									</div>
+									<div class="checkbox">
+										<label><input type="checkbox" value="cambodia" checked>&nbsp;&nbsp;Kamboja</label>
+									</div>
+									<div class="checkbox">
+										<label><input type="checkbox" value="laos" checked>&nbsp;&nbsp;Laos</label>
+									</div>
+									<div class="checkbox">
+										<label><input type="checkbox" value="myanmar" checked>&nbsp;&nbsp;Myanmar</label>
+									</div>
+									<div class="checkbox">
+										<label><input type="checkbox" value="brunei" checked>&nbsp;&nbsp;Brunei Darussalam</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="secondContainer">
+					<div class="titleContainer">
+						<div class="fullContainer">
+							<h6 id="titleSecondaryChart">Jumlah Kunjungan Wisatawan Mancanegara di Indonesia per Tahun</h6>
+							<div class="secondaryLineChartContainer">
+								<div id="secondaryLineChart">
+								</div>
+								<div id="facts">
+									Facts
+								</div>
+							</div>
+							<div class="filterSecondary" id="filterSecondaryChart">
+								<div class="filterYear">
+									<div class="filterYearLeft">
+										<label for="fromSecondary">from:&nbsp;&nbsp;&nbsp;</label>
+										<select class="form-control" id="fromSecondary">
+											<option selected value="1">Jan</option>
+											<option value="2">Feb</option>
+											<option value="3">Mar</option>
+											<option value="4">Apr</option>
+											<option value="5">Mei</option>
+											<option value="6">Jun</option>
+											<option value="7">Jul</option>
+											<option value="8">Aug</option>
+											<option value="9">Sep</option>
+											<option value="10">Okt</option>
+											<option value="11">Nov</option>
+											<option disabled value="12">Des</option>
+										</select>
+									</div>
+
+									<div class="filterYearRight">
+										<label for="toSecondary">to:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<select class="form-control" id="toSecondary">
+												<option disabled value="1">Jan</option>
+												<option value="2">Feb</option>
+												<option value="3">Mar</option>
+												<option value="4">Apr</option>
+												<option value="5">Mei</option>
+												<option value="6">Jun</option>
+												<option value="7">Jul</option>
+												<option value="8">Aug</option>
+												<option value="9">Sep</option>
+												<option value="10">Okt</option>
+												<option value="11">Nov</option>
+												<option selected value="12">Des</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="removeButtonContainer" id="buttonSecondaryChart">
+							<button onClick="hideButton()" type="button" class="btn btn-default btn-sm">
+								<img src="./icon.png" style="width: 20px; height: auto">
+							</button>
+						</div>
+					</div>
+					<div class="bubbleContainer">
+						<center><h6>Jumlah Peningkatan Devisa Indonesia pada Sektor Pariwisata<br>(dari Tahun Sebelumnya)</h6></center>
+						<div id="bubble-chart"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		var showSecondaryChart = true;	
+
+		function fillColumnsInfo(rawLineColumn, countries) {
+			var columnsInfo = {};
+			countries.forEach(country => {
+				columnsInfo[country] = rawLineColumn[country];
+			});
+
+			return columnsInfo;
+		}
+
+		function fillColorRange(colorMap, countries) {
+			var colorRange = [];
+			countries.forEach(country => {
+				colorRange.push(colorMap[country]);
+			});
+
+			return colorRange;
+		}
+
+		function removeElement(arr, key, value) {
+			return arr.filter(function(element) {
+				return element[key] != value;
+			});
+		}
+
+		function fillData(years, countries, rawLineData) {
+			var groupLineData = [];
+			years.forEach(year => {
+				var mainObj = {
+					"over": year
+				}
+
+				countries.forEach(country => {
+					mainObj[country] = rawLineData[country][year];
+				});
+
+				groupLineData.push(mainObj);
+			});
+
+			return groupLineData;
+		}
+
+		function fillSecondaryData(year, country, months, rawSecondaryLineData) {
+			var groupSecondaryLineData = [];
+
+			months.forEach(month => {
+				var mainObj = {
+					"over": month
+				}
+				mainObj[country] = rawSecondaryLineData[year][month];
+				groupSecondaryLineData.push(mainObj);
+			});
+
+			return groupSecondaryLineData;
+		}
+
+		function changeYear(yearCurrent) {
+			year = yearCurrent;
+			var groupSecondaryLineData = fillSecondaryData(year, country, months, rawSecondaryLineData);
+
+			$("#secondaryLineChart").empty();
+			multiSeriesSecondaryChartConfig.data = groupSecondaryLineData;
+			multiSeriesSecondaryChartConfig.label.xAxis = "Bulan" + " (" + year + ")";
+			multiSeriesSecondaryChartConfig.months = months;
+			multiSeriesSecondaryChart = new multiSeriesLineChart(multiSeriesSecondaryChartConfig);
+			showButton();
+		}
+
+		function resetSecondaryChart() {
+			months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun",
+				"Jul", "Aug", "Sep", "Okt", "Nov", "Des"];
+			startMonth = 1;
+			endMonth = 12;
+
+			var options = document.getElementById('fromSecondary').options;
+			for (var i = 0; i < options.length; i++) {
+				options[i].disabled = false;
+			}
+			options[0].selected = true;
+			options[options.length - 1].disabled = true;
+
+			options = document.getElementById('toSecondary').options;
+			for (var i = 0; i < options.length; i++) {
+				options[i].disabled = false;
+			}
+			options[0].disabled = true;
+			options[options.length - 1].selected = true;
+		}
+
+		function showButton() {
+			showSecondaryChart = true;
+			var buttonSecondary = document.getElementById('buttonSecondaryChart');
+			buttonSecondary.style.visibility = "visible";
+			var filterSecondary = document.getElementById('filterSecondaryChart');
+			filterSecondary.style.visibility = "visible";
+			var facts = document.getElementById('facts');
+			facts.style.visibility = "hidden";
+			var title = document.getElementById('titleSecondaryChart');
+			title.style.visibility = "visible";
+		}
+
+		function hideButton() {
+			showSecondaryChart = false;
+			var buttonSecondary = document.getElementById('buttonSecondaryChart');
+			buttonSecondary.style.visibility = "hidden";
+			var filterSecondary = document.getElementById('filterSecondaryChart');
+			filterSecondary.style.visibility = "hidden";
+			$("#secondaryLineChart").empty();
+			$("#Legend_secondaryLineChart").empty();
+			resetSecondaryChart();
+			var facts = document.getElementById('facts');
+			facts.style.visibility = "visible";
+			var title = document.getElementById('titleSecondaryChart');
+			title.style.visibility = "hidden";
+		}
+
+		hideButton();
+
+		var startYear = 2010;
+		var endYear = 2017;
+
+		var rawLineData = {
+			"thailand": {
+				"2010": 15936400,
+				"2011": 19230470,
+				"2012": 22353903,
+				"2013": 26546725,
+				"2014": 24809683,
+				"2015": 29881091,
+				"2016": 32588303,
+				"2017": 35381210
+			},
+			"malaysia": {
+				"2010": 24577196,
+				"2011": 24714324,
+				"2012": 25032708,
+				"2013": 25715460,
+				"2014": 27437315,
+				"2015": 25721251,
+				"2016": 26757392,
+				"2017": 25948459
+			},
+			"singapore": {
+				"2010": 11641700,
+				"2011": 13171303,
+				"2012": 14496091,
+				"2013": 15567923,
+				"2014": 15095152,
+				"2015": 15231469,
+				"2016": 16402593,
+				"2017": 17422826
+			},
+			"indonesia": {
+				"2010": 7002944,
+				"2011": 7649731,
+				"2012": 8044462,
+				"2013": 8802129,
+				"2014": 9435411,
+				"2015": 10406759,
+				"2016": 11519275,
+				"2017": 14039799
+			},
+			"vietnam": {
+				"2010": 5049855,
+				"2011": 6014032,
+				"2012": 6847678,
+				"2013": 7572352,
+				"2014": 7874312,
+				"2015": 7943651,
+				"2016": 10012735,
+				"2017": 12922151
+			},
+			"phillipine": {
+				"2010": 3520471,
+				"2011": 3917454,
+				"2012": 4272811,
+				"2013": 4681307,
+				"2014": 4833368,
+				"2015": 5360682,
+				"2016": 5967005,
+				"2017": 6620908
+			},
+			"cambodia": {
+				"2010": 2508289,
+				"2011": 2881862,
+				"2012": 3584307,
+				"2013": 4210165,
+				"2014": 4502775,
+				"2015": 4775231,
+				"2016": 5011712,
+				"2017": 5602157
+			},
+			"laos": {
+				"2010": 2513028,
+				"2011": 2723564,
+				"2012": 3330072,
+				"2013": 3779490,
+				"2014": 4158719,
+				"2015": 4684429,
+				"2016": 4239047,
+				"2017": 3860000
+			},
+			"myanmar": {
+				"2010": 791505,
+				"2011": 816369,
+				"2012": 1058995,
+				"2013": 2044307,
+				"2014": 3081412,
+				"2015": 4681020,
+				"2016": 2907207,
+				"2017": 3443133
+			},
+			"brunei": {
+				"2010": 214290,
+				"2011": 242061,
+				"2012": 209108,
+				"2013": 224904,
+				"2014": 200989,
+				"2015": 218213,
+				"2016": 218809,
+				"2017": 258955
+			}
+		};
+
+		var rawLineColumn = {
+			"thailand": "Thailand",
+			"malaysia": "Malaysia",
+			"singapore": "Singapur",
+			"indonesia": "Indonesia",
+			"vietnam": "Vietnam",
+			"phillipine": "Filipina",
+			"cambodia": "Kamboja",
+			"laos": "Laos",
+			"myanmar": "Myanmar",
+			"brunei": "Brunei Darussalam"
+		}
+		
+		var columnsInfo = {};
+
+		var countryState = {
+			"thailand": true,
+			"malaysia": true,
+			"singapore": true,
+			"indonesia": true,
+			"vietnam": true,
+			"phillipine": true,
+			"cambodia": true,
+			"laos": true,
+			"myanmar": true,
+			"brunei": true
+		};
+
+		var colorMap = {
+			"thailand": "#2c6b70",
+			"malaysia": "#96653d",
+			"singapore": "#c4852f",
+			"indonesia": "#eb2025",
+			"vietnam": "#9a2e33",
+			"phillipine": "#dd5727",
+			"cambodia": "#d78e2a",
+			"laos": "#8b7a3c",
+			"myanmar": "#a8cf5a",
+			"brunei": "#4c3a3f"
+		}
+
+		var colorRange = ["#2c6b70", "#96653d", "#c4852f", "#eb2025", "#9a2e33", 
+				"#dd5727", "#d78e2a", "#8b7a3c", "#a8cf5a", "#4c3a3f"]
+
+		var countries = [
+			"thailand",
+			"malaysia",
+			"singapore",
+			"indonesia",
+			"vietnam",
+			"phillipine",
+			"cambodia",
+			"laos",
+			"myanmar",
+			"brunei"
+		];
+		
+		var years = ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017"]
+
+		countries.forEach(country => {
+			var objInfo = {};
+			objInfo[country] = rawLineColumn[country];
+			columnsInfo = {...columnsInfo, ...objInfo };
+		});
+
+		$("#primaryLineChart").empty();
+
+		var groupLineData = fillData(years, countries, rawLineData);
+
+		var multiSeriesChartConfig = {
+			mainDiv: "#primaryLineChart",
+			colorRange: colorRange,
+			data: groupLineData,
+			columnsInfo: columnsInfo,
+			startX: startYear,
+			endX: endYear,
+			years: years,
+			xAxis: "over",
+			yAxis: "runs",
+			label: {
+				xAxis: "Tahun",
+				yAxis: "Pengunjung"
+			},
+			marginTop: 30,
+			marginBottom: 40,
+			marginLeft: 80,
+			marginRight: 20,
+			width: 700, 
+			height: 350,
+			requireLegend: true,
+			type: 1,
+			callback: changeYear,
+			legendWidth: '700px',
+			legendMarginLeft: '20px'
+		};
+		var multiSeriesChart = new multiSeriesLineChart(multiSeriesChartConfig);
+
+		$('input:checkbox').change(function() {
+			var checked = $(this).prop('checked');
+			var value = $(this).prop('value');
+			if (checked) {
+				countryState[value] = true;
+			} else {
+				countryState[value] = false;
+			}
+
+			allKeys = Object.keys(countryState);
+			countries = [];
+			for (i = 0; i < allKeys.length; i++) {
+				if (countryState[allKeys[i]]) {
+					countries.push(allKeys[i]);
+				}
+			}
+
+			groupLineData = fillData(years, countries, rawLineData); 
+			colorRange = fillColorRange(colorMap, countries);
+			columnsInfo = fillColumnsInfo(rawLineColumn, countries);
+
+			$("#primaryLineChart").empty();
+			multiSeriesChartConfig.colorRange = colorRange;
+			multiSeriesChartConfig.data = groupLineData;
+			multiSeriesChartConfig.columnsInfo = columnsInfo;
+			multiSeriesChart = new multiSeriesLineChart(multiSeriesChartConfig);
+		});
+
+		$('#from').change(function() {
+			var from = parseInt($(this).val());
+			// if (from <= endYear) {
+				startYear = from;
+
+				years = [];
+				for (i = startYear; i <= endYear; i++) {
+					years.push(i);
+				} 
+
+				groupLineData = fillData(years, countries, rawLineData);
+
+				$("#primaryLineChart").empty();
+				multiSeriesChartConfig.data = groupLineData;
+				multiSeriesChartConfig.columnsInfo = columnsInfo;
+				multiSeriesChartConfig.years = years;
+				multiSeriesChartConfig.startX = startYear;
+				multiSeriesChartConfig.endX = endYear;
+				multiSeriesChart = new multiSeriesLineChart(multiSeriesChartConfig);
+
+				var options = document.getElementById('to').options;
+				for (var i = 0; i < options.length; i++) {
+					if (i <= startYear - 2010) {
+						options[i].disabled = true;
+					} else {
+						options[i].disabled = false;
+					}
+				}
+			// } else {
+			// 	alert('Start year must be <= end year !');
+			// 	$(this).val(startYear);
+			// }
+		});
+
+		$('#to').change(function() { 
+			var to = $(this).val();
+			// if (to >= startYear) {
+				endYear = to;
+
+				years = [];
+				for (i = startYear; i <= endYear; i++) {
+					years.push(i);
+				}
+
+				groupLineData = fillData(years, countries, rawLineData);
+
+				$("#primaryLineChart").empty();
+				multiSeriesChartConfig.data = groupLineData;
+				multiSeriesChartConfig.columnsInfo = columnsInfo;
+				multiSeriesChartConfig.years = years;
+				multiSeriesChartConfig.startX = startYear;
+				multiSeriesChartConfig.endX = endYear;
+				multiSeriesChart = new multiSeriesLineChart(multiSeriesChartConfig);
+
+				var options = document.getElementById('from').options;
+				for (var i = 0; i < options.length; i++) {
+					if (i >= endYear - 2010) {
+						options[i].disabled = true;
+					} else {
+						options[i].disabled = false;
+					}
+				}
+			// } else {
+			// 	alert('End year must be >= start year !');
+			// 	$(this).val(endYear);
+			// }
+		});
+		
+		// secondaryLineChart: Indonesia
+		var rawSecondaryLineData = {
+			"2010": {
+				"Jan": 493799,
+				"Feb": 523135,
+				"Mar": 594242,
+				"Apr": 555915,
+				"Mei": 600031,
+				"Jun": 613422,
+				"Jul": 658476,
+				"Aug": 586530,
+				"Sep": 560367,
+				"Okt": 594654,
+				"Nov": 578152,
+				"Des": 644221
+			},
+			"2011": {
+				"Jan": 548821,
+				"Feb": 568057,
+				"Mar": 598068,
+				"Apr": 608093,
+				"Mei": 600191,
+				"Jun": 674402,
+				"Jul": 745451,
+				"Aug": 621084,
+				"Sep": 650071,
+				"Okt": 656006,
+				"Nov": 654948,
+				"Des": 724539
+			},
+			"2012": {
+				"Jan": 652692,
+				"Feb": 592502,
+				"Mar": 658602,
+				"Apr": 626100,
+				"Mei": 650883,
+				"Jun": 695531,
+				"Jul": 701200,
+				"Aug": 634194,
+				"Sep": 683584,
+				"Okt": 688341,
+				"Nov": 693867,
+				"Des": 766966
+			},
+			"2013": {
+				"Jan": 614328,
+				"Feb": 678415,
+				"Mar": 725316,
+				"Apr": 646117,
+				"Mei": 700708,
+				"Jun": 789594,
+				"Jul": 717784,
+				"Aug": 771009,
+				"Sep": 770878,
+				"Okt": 719903,
+				"Nov": 807422,
+				"Des": 860655
+			},
+			"2014": {
+				"Jan": 753079,
+				"Feb": 702666,
+				"Mar": 765607,
+				"Apr": 726332,
+				"Mei": 752363,
+				"Jun": 851475,
+				"Jul": 777210,
+				"Aug": 826821,
+				"Sep": 791296,
+				"Okt": 808767,
+				"Nov": 764461,
+				"Des": 915334
+			},
+			"2015": {
+				"Jan": 785973,
+				"Feb": 843928,
+				"Mar": 841071,
+				"Apr": 801873,
+				"Mei": 852388,
+				"Jun": 872385,
+				"Jul": 877584,
+				"Aug": 911704,
+				"Sep": 920128,
+				"Okt": 877798,
+				"Nov": 835408,
+				"Des": 986519
+			},
+			"2016": {
+				"Jan": 814303,
+				"Feb": 888309,
+				"Mar": 915019,
+				"Apr": 901095,
+				"Mei": 915206,
+				"Jun": 857651,
+				"Jul": 1032741,
+				"Aug": 1031986,
+				"Sep": 1006653,
+				"Okt": 1040651,
+				"Nov": 1002333,
+				"Des": 1113328
+			},
+			"2017": {
+				"Jan": 1107968,
+				"Feb": 1023388,
+				"Mar": 1059777,
+				"Apr": 1171386,
+				"Mei": 1148588,
+				"Jun": 1144001,
+				"Jul": 1370591,
+				"Aug": 1393243,
+				"Sep": 1250231,
+				"Okt": 1161565,
+				"Nov": 1062030,
+				"Des": 1147031
+			}
+		}
+	
+		var columnsInfoSecondary = {
+			"indonesia": "Indonesia"
+		};
+
+		var colorRangeSecondary = ["#eb2025"];
+
+		var year = 2010;
+		var country = "indonesia";
+		var startMonth = 1;
+		var endMonth = 12;
+
+		var months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun",
+			"Jul", "Aug", "Sep", "Okt", "Nov", "Des"];
+
+		var monthMap = {
+			1: "Jan",
+			2: "Feb",
+			3: "Mar",
+			4: "Apr",
+			5: "Mei",
+			6: "Jun",
+			7: "Jul",
+			8: "Aug",
+			9: "Sep",
+			10: "Okt",
+			11: "Nov",
+			12: "Des"
+		}
+
+		$("#secondaryLineChart").empty();
+
+		var groupSecondaryLineData = fillSecondaryData(year, country, months, rawSecondaryLineData);
+
+		var multiSeriesSecondaryChartConfig = {
+			mainDiv: "#secondaryLineChart",
+			colorRange: colorRangeSecondary,
+			data: groupSecondaryLineData,
+			columnsInfo: columnsInfoSecondary,
+			months: months,
+			xAxis: "over",
+			yAxis: "runs",
+			label: {
+				xAxis: "Bulan" + " (" + year + ")",
+				yAxis: "Pengunjung"
+			},
+			marginTop: 30,
+			marginBottom: 40,
+			marginLeft: 80,
+			marginRight: 20,
+			width: 550,
+			height: 250,
+			requireLegend: false,
+			type: 2,
+			legendWidth: '100px',
+			legendMarginLeft: '35px'
+		};
+
+		$('#fromSecondary').change(function() {
+			var from = parseInt($(this).val());
+			// if (from <= endMonth) {
+				startMonth = from;
+
+				months = [];
+				for (i = startMonth; i <= endMonth; i++) {
+					months.push(monthMap[i]);
+				} 
+
+				var groupSecondaryLineData = fillSecondaryData(year, country, months, rawSecondaryLineData);
+
+				$("#secondaryLineChart").empty();
+				multiSeriesSecondaryChartConfig.data = groupSecondaryLineData;
+				multiSeriesSecondaryChartConfig.months = months;
+				multiSeriesSecondaryChart = new multiSeriesLineChart(multiSeriesSecondaryChartConfig);
+
+				var options = document.getElementById('toSecondary').options;
+				for (var i = 0; i < options.length; i++) {
+					if (i <= startMonth - 1) {
+						options[i].disabled = true;
+					} else {
+						options[i].disabled = false;
+					}
+				}
+
+			// } else {
+			// 	alert('Start month must be <= end month !');
+			// 	$(this).val(startMonth);
+			// }
+		});
+
+		$('#toSecondary').change(function() { 
+			var to = parseInt($(this).val());
+			// if (to >= startMonth) {
+				endMonth = to;
+
+				months = [];
+				for (i = startMonth; i <= endMonth; i++) {
+					months.push(monthMap[i]);
+				}
+
+				var groupSecondaryLineData = fillSecondaryData(year, country, months, rawSecondaryLineData);
+
+				$("#secondaryLineChart").empty();
+				multiSeriesSecondaryChartConfig.data = groupSecondaryLineData;
+				multiSeriesSecondaryChartConfig.months = months;
+				multiSeriesSecondaryChart = new multiSeriesLineChart(multiSeriesSecondaryChartConfig);
+
+				var options = document.getElementById('fromSecondary').options;
+				for (var i = 0; i < options.length; i++) {
+					if (i >= endMonth - 1) {
+						options[i].disabled = true;
+					} else {
+						options[i].disabled = false;
+					}
+				}
+			// } else {
+			// 	alert('End month must be >= start month !');
+			// 	$(this).val(endMonth);
+			// }
+		});
+
+		// set the dimensions and margins of the graph
+		var margin = {top: 25, right: 20, bottom: 30, left: 120},
+		  width = 550 - margin.left - margin.right,
+		  height = 250 - margin.top - margin.bottom;
+
+		// append the svg object to the body of the page
+		var svg = d3.select("#bubble-chart")
+		.append("svg")
+		  .attr("width", width + margin.left + margin.right)
+		  .attr("height", height + margin.top + margin.bottom)
+		.append("g")
+		  .attr("transform",
+		        "translate(" + margin.left + "," + margin.top + ")");
+
+		//Read the data
+		d3.csv("https://raw.githubusercontent.com/vereniliana/test/master/devisa.csv", function(data) {
+
+		var incomeYears = [2012, 2013, 2014, 2015, 2016, 2017]
+
+		// Add X axis
+		var x = d3.scaleLinear()
+		.domain([2011, 2018])
+		.range([ 0, width ]);
+		svg.append("g")
+		.attr("transform", "translate(0," + height + ")")
+		.call(d3.axisBottom(x).tickValues(incomeYears).tickFormat(d3.format("d")))
+		.append("text")
+		        .attr("x", width / 2)
+		        .attr("y", margin.bottom * 1)
+		        .attr("dx", "0.32em")
+		        .attr("fill", "#000")
+		        .attr("font-weight", "bold")
+		        .attr("text-anchor", "start")
+		        .text("Tahun");
+
+		// Add Y axis
+		var y = d3.scaleLinear()
+		.domain([0.4, 1.6])
+		.range([ height, 0]);
+		svg.append("g")
+		.call(d3.axisLeft(y))
+		.append("text")
+        .attr("y", -10)
+        .attr("fill", "#000")
+        .attr("font-weight", "bold")
+        .text("Peningkatan (miliar USD)");
+
+		// Add a scale for bubble size
+		var z = d3.scaleLinear()
+		.domain([0, 5])
+		.range([ 0, 35]);
+
+		// Add dots
+		svg.append('g')
+		.selectAll("dot")
+		.data(data)
+		.enter()
+		.append("circle")
+		  .attr("cx", function (d) { return x(d.tahun); } )
+		  .attr("cy", function (d) { return y(d.selisih); } )
+		  .attr("r", function (d) { return z(d.rank_value); } )
+		  .style("fill", "#eb2025")
+		  // .style("opacity", "0.7")
+		  .attr("stroke", "black")
+		  .attr("stroke-width", "2px")
+		})
+	</script>
+</html>
