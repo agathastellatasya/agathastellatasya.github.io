@@ -69,11 +69,15 @@
   flex-direction: row;
   width: 100%;
   height: 50px;
+  color: white;
 }
 
+.menu-container:hover {
+  background-color: white;
+  color: black;
+} 
+
 img {
-  /*margin: 10px 10px 0px 10px;*/
-  /*border-radius: 50%;*/
   width: 30px;
   height: auto;
   margin-left: 10px;
@@ -87,6 +91,7 @@ img {
 
 #active {
   background-color: white;
+  color: black !important;
 }
 
 .menu-text {
@@ -94,7 +99,6 @@ img {
   /*margin-left: 5px;*/
   margin-top: 3px; 
   margin-bottom: 20px;
-  color: black;
   display: flex;
   flex-direction: column; 
 }
