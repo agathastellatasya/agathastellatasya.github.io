@@ -135,12 +135,15 @@ img {
 .titleContainer {
   display: flex;
   flex-direction: row;
+  /*border: 1px solid #ced4da;*/
 }
 
 .fullContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px 0px;
+  border: 1px solid #ced4da;
 }
 
 #primaryLineChart #secondaryLineChart {
@@ -151,6 +154,36 @@ img {
 #facts {
   display: flex;
   flex-direction: column;
+}
+
+.rank {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.achievement {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.rank-box {
+  padding: 10px;
+  background-color: #eb2025;
+  text-align: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: white;
+  align-items: center;
+}
+
+.rank-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px 20px;
 }
 
 .filterContainer {
@@ -169,7 +202,7 @@ img {
 .filterSecondary {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .filterPrimary {
@@ -212,4 +245,10 @@ img {
     flex-direction: row;
     margin-left: 20px;
     align-items: center;
+}
+
+.btn-primary {
+  background-color: white !important;
+  color: black !important;
+  border-color: #ced4da !important;
 }
