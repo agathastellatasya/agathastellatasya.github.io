@@ -55,7 +55,7 @@
 						<div class="filterPrimary">
 							<div class="filterYear">
 								<div class="filterYearLeft">
-									<label for="from">from:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+									<label for="from">dari:&nbsp;&nbsp;&nbsp;&nbsp;</label>
 									<select class="btn btn-primary" id="from">
 										<option selected value="2010">2010</option>
 										<option value="2011">2011</option>
@@ -69,7 +69,7 @@
 								</div>
 
 								<div class="filterYearRight">
-									<label for="to">to:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+									<label for="to">ke:&nbsp;&nbsp;&nbsp;&nbsp;</label>
 									<select class="btn btn-primary" id="to">
 										<option disabled value="2010">2010</option>
 										<option value="2011">2011</option>
@@ -175,7 +175,7 @@
 							<div class="filterSecondary" id="filterSecondaryChart">
 								<div class="filterYear">
 									<div class="filterYearLeft">
-										<label for="fromSecondary">from:&nbsp;&nbsp;&nbsp;</label>
+										<label for="fromSecondary">dari:&nbsp;&nbsp;&nbsp;</label>
 										<select class="btn btn-primary" id="fromSecondary">
 											<option selected value="1">Jan</option>
 											<option value="2">Feb</option>
@@ -193,7 +193,7 @@
 									</div>
 
 									<div class="filterYearRight">
-										<label for="toSecondary">to:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<label for="toSecondary">ke:&nbsp;&nbsp;&nbsp;&nbsp;</label>
 										<select class="btn btn-primary" id="toSecondary">
 												<option disabled value="1">Jan</option>
 												<option value="2">Feb</option>
@@ -220,7 +220,10 @@
 					</div>
 					<div class="bubbleContainer">
 						<center><h6><b>Jumlah Peningkatan Devisa Indonesia pada Sektor Pariwisata<br>(dari Tahun Sebelumnya)</b></h6></center>
-						<div id="bubble-chart"></div>
+						<div class="bubbleChartContainer">
+							<div id="bubble-chart"></div>
+							<div class="bubbleLegend"><i>catatan: <br>luas area melambangkan <br> peringkat devisa negara <br> pada sektor pariwisata <br> dibandingkan 11 ekspor <br> barang terbesar lainnya</i></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -886,203 +889,203 @@
         "thousands": "."
     });
 
-		// set the dimensions and margins of the graph
-		var margin = {top: 25, right: 20, bottom: 30, left: 120},
-		  width = 550 - margin.left - margin.right,
-		  height = 250 - margin.top - margin.bottom;
+	// set the dimensions and margins of the graph
+	var margin = {top: 25, right: 20, bottom: 30, left: 120},
+	  width = 450 - margin.left - margin.right,
+	  height = 230 - margin.top - margin.bottom;
 
-		// append the svg object to the body of the page
-		var svg = d3.select("#bubble-chart")
-		.append("svg")
-		  .attr("width", width + margin.left + margin.right)
-		  .attr("height", height + margin.top + margin.bottom)
-		.append("g")
-		  .attr("transform",
-		        "translate(" + margin.left + "," + margin.top + ")");
+	// append the svg object to the body of the page
+	var svg = d3.select("#bubble-chart")
+	.append("svg")
+	  .attr("width", width + margin.left + margin.right)
+	  .attr("height", height + margin.top + margin.bottom)
+	.append("g")
+	  .attr("transform",
+	        "translate(" + margin.left + "," + margin.top + ")");
 
-		//Read the data
-		d3.csv("https://raw.githubusercontent.com/vereniliana/test/master/devisa.csv", function(data) {
+	//Read the data
+	d3.csv("https://raw.githubusercontent.com/vereniliana/test/master/devisa.csv", function(data) {
 
-			var incomeYears = [2012, 2013, 2014, 2015, 2016, 2017]
+		var incomeYears = [2012, 2013, 2014, 2015, 2016, 2017]
 
-			// Add X axis
-			var x = d3.scaleLinear()
-			.domain([2011, 2018])
-			.range([ 0, width ]);
-			svg.append("g")
-			.attr("transform", "translate(0," + height + ")")
-			.call(d3.axisBottom(x).tickValues(incomeYears).tickFormat(d3.format("d")))
-			.append("text")
-							.attr("x", width / 2)
-							.attr("y", margin.bottom * 1)
-							.attr("dx", "0.32em")
-							.attr("fill", "#000")
-							.attr("font-weight", "bold")
-							.attr("text-anchor", "start")
-							.text("Tahun");
+		// Add X axis
+		var x = d3.scaleLinear()
+		.domain([2011, 2018])
+		.range([ 0, width ]);
+		svg.append("g")
+		.attr("transform", "translate(0," + height + ")")
+		.call(d3.axisBottom(x).tickValues(incomeYears).tickFormat(d3.format("d")))
+		.append("text")
+						.attr("x", width / 2)
+						.attr("y", margin.bottom * 1)
+						.attr("dx", "0.32em")
+						.attr("fill", "#000")
+						.attr("font-weight", "bold")
+						.attr("text-anchor", "start")
+						.text("Tahun");
 
-			// Add Y axis
-			var y = d3.scaleLinear()
-			.domain([0.4, 1.6])
-			.range([ height, 0]);
-			svg.append("g")
-			.call(d3.axisLeft(y))
-			.append("text")
-					.attr("y", -10)
-					.attr("fill", "#000")
-					.attr("font-weight", "bold")
-					.text("Peningkatan (miliar USD)");
+		// Add Y axis
+		var y = d3.scaleLinear()
+		.domain([0.4, 1.6])
+		.range([height, 0]);
+		svg.append("g")
+		.call(d3.axisLeft(y))
+		.append("text")
+				.attr("y", -10)
+				.attr("fill", "#000")
+				.attr("font-weight", "bold")
+				.text("Peningkatan (miliar USD)");
 
-			// Add a scale for bubble size
-			var z = d3.scaleLinear()
-			.domain([0, 5])
-			.range([ 0, 35]);
+		// Add a scale for bubble size
+		var z = d3.scaleLinear()
+		.domain([0, 5])
+		.range([ 0, 35]);
 
-			var mainDivName = "bubble-chart";
+		var mainDivName = "bubble-chart";
 
-			// Add dots
-			var circles = svg.append('g')
-			.selectAll("dot")
-			.data(data)
-			.enter()
-			.append("circle")
-				.attr("cx", function (d) { return x(d.tahun); } )
-				.attr("cy", function (d) { return y(d.selisih); } )
-				.attr("r", function (d) { return z(d.rank_value); } )
-				.style("fill", "#eb2025")
-				// .style("opacity", "0.7")
-				.attr("stroke", "black")
-				.attr("stroke-width", "2px")
-				.attr("data", function (d) {
-            var data = {};
-            data["tahun"] = d.tahun;
-						data["selisih"] = d.selisih;
-						data["rank_value"] = d.rank_value;
-            return JSON.stringify(data);
-        })
+		// Add dots
+		var circles = svg.append('g')
+		.selectAll("dot")
+		.data(data)
+		.enter()
+		.append("circle")
+			.attr("cx", function (d) { return x(d.tahun); } )
+			.attr("cy", function (d) { return y(d.selisih); } )
+			.attr("r", function (d) { return z(d.rank_value); } )
+			.style("fill", "#eb2025")
+			// .style("opacity", "0.7")
+			.attr("stroke", "black")
+			.attr("stroke-width", "2px")
+			.attr("data", function (d) {
+        var data = {};
+        data["tahun"] = d.tahun;
+					data["selisih"] = d.selisih;
+					data["rank_value"] = d.rank_value;
+        return JSON.stringify(data);
+    })
 
-				circles.on("mouseover", function (d) {
-						var currentEl = d3.select(this);
-						var fadeInSpeed = 120;
-						d3.select("#circletooltip_" + mainDivName)
-								.transition()
-								.duration(fadeInSpeed)
-								.style("opacity", function () {
-								return 1;
-								});
-						d3.select("#circletooltip_" + mainDivName).attr("transform", function (d) {
-								var mouseCoords = d3.mouse(this.parentNode);
-								var xCo = 0;
-								if (mouseCoords[0] + 10 >= width * 0.80) {
-									xCo = mouseCoords[0] - parseFloat(d3.selectAll("#circletooltipRect_" + mainDivName)
-										.attr("width"));
-								} else {
-									xCo = mouseCoords[0] + 10;
-								}
-								var x = xCo;
-								var yCo = 0;
-								if (mouseCoords[0] + 10 >= width * 0.80) {
-									yCo = mouseCoords[1] + 10;
-								} else {
-									yCo = mouseCoords[1];
-								}
-								var x = xCo;
-								var y = yCo;
-								return "translate(" + x + "," + y + ")";
-						});
-					
-						//CBT: calculate tooltips text
-						var tooltipData = JSON.parse(currentEl.attr("data"));
-						var tooltipsText = "";
-						d3.selectAll("#circletooltipText_" + mainDivName).text("");
-						var yPos = 0;
-						d3.selectAll("#circletooltipText_" + mainDivName).append("tspan").attr("x", 0).attr("y", yPos * 10).attr("dy", "1.9em").text("Tahun" + ":  " + tooltipData.tahun);
-						yPos = yPos + 1;
-						d3.selectAll("#circletooltipText_" + mainDivName).append("tspan").attr("x", 0).attr("y", yPos * 10).attr("dy", "1.9em").text("Peningkatan" + ":  " + tooltipData.selisih.replace(".", ",") + " miliar USD");
-						yPos = yPos + 1;
-						d3.selectAll("#circletooltipText_" + mainDivName).append("tspan").attr("x", 0).attr("y", yPos * 10).attr("dy", "1.9em").text("Ranking" + ":  " + (6 - parseInt(tooltipData.rank_value)));
-
-						//CBT: calculate width of the text based on characters
-						var dims = helpers.getDimensions("circletooltipText_" + mainDivName);
-						d3.selectAll("#circletooltipText_" + mainDivName + " tspan")
-								.attr("x", dims.w + 4);
+			circles.on("mouseover", function (d) {
+					var currentEl = d3.select(this);
+					var fadeInSpeed = 120;
+					d3.select("#circletooltip_" + mainDivName)
+							.transition()
+							.duration(fadeInSpeed)
+							.style("opacity", function () {
+							return 1;
+							});
+					d3.select("#circletooltip_" + mainDivName).attr("transform", function (d) {
+							var mouseCoords = d3.mouse(this.parentNode);
+							var xCo = 0;
+							if (mouseCoords[0] + 10 >= width * 0.80) {
+								xCo = mouseCoords[0] - parseFloat(d3.selectAll("#circletooltipRect_" + mainDivName)
+									.attr("width"));
+							} else {
+								xCo = mouseCoords[0] + 10;
+							}
+							var x = xCo;
+							var yCo = 0;
+							if (mouseCoords[0] + 10 >= width * 0.80) {
+								yCo = mouseCoords[1] + 10;
+							} else {
+								yCo = mouseCoords[1];
+							}
+							var x = xCo;
+							var y = yCo;
+							return "translate(" + x + "," + y + ")";
+					});
 				
-						d3.selectAll("#circletooltipRect_" + mainDivName)
-								.attr("width", dims.w + 10)
-								.attr("height", dims.h + 20);
-				});
+					//CBT: calculate tooltips text
+					var tooltipData = JSON.parse(currentEl.attr("data"));
+					var tooltipsText = "";
+					d3.selectAll("#circletooltipText_" + mainDivName).text("");
+					var yPos = 0;
+					d3.selectAll("#circletooltipText_" + mainDivName).append("tspan").attr("x", 0).attr("y", yPos * 10).attr("dy", "1.9em").text("Tahun" + ":  " + tooltipData.tahun);
+					yPos = yPos + 1;
+					d3.selectAll("#circletooltipText_" + mainDivName).append("tspan").attr("x", 0).attr("y", yPos * 10).attr("dy", "1.9em").text("Peningkatan" + ":  " + tooltipData.selisih.replace(".", ",") + " miliar USD");
+					yPos = yPos + 1;
+					d3.selectAll("#circletooltipText_" + mainDivName).append("tspan").attr("x", 0).attr("y", yPos * 10).attr("dy", "1.9em").text("Ranking" + ":  " + (6 - parseInt(tooltipData.rank_value)));
 
-				circles.on("mousemove", function () {
-						d3.selectAll("#circletooltip_" + mainDivName)
-								.attr("transform", function (d) {
-								var mouseCoords = d3.mouse(this.parentNode);
-								var xCo = 0;
-								if (mouseCoords[0] + 10 >= width * 0.80) {
-										xCo = mouseCoords[0] - parseFloat(d3.selectAll("#circletooltipRect_" + mainDivName)
-										.attr("width"));
-								} else {
-										xCo = mouseCoords[0] + 10;
-								}
-								var x = xCo;
-								var yCo = 0;
-								if (mouseCoords[0] + 10 >= width * 0.80) {
-										yCo = mouseCoords[1] + 10;
-								} else {
-										yCo = mouseCoords[1];
-								}
-								var x = xCo;
-								var y = yCo;
-								return "translate(" + x + "," + y + ")";
-						});
-				});
-
-				circles.on("mouseout", function () {
-						d3.select("#circletooltip_" + mainDivName)
-								.style("opacity", function () {
-								return 0;
-								})
-								.attr("transform", function (d, i) {
-								// klutzy, but it accounts for tooltip padding which could push it onscreen
-								var x = -500;
-								var y = -500;
-								return "translate(" + x + "," + y + ")";
-								});
-				});
-
-				var circleTooltipg = svg.append("g")
-						.attr("font-family", "'Roboto', sans-serif")
-						.attr("font-size", 10)
-						.attr("text-anchor", "end")
-						.attr("id", "circletooltip_" + mainDivName)
-						.attr("style", "opacity:0")
-						.attr("transform", "translate(-500,-500)");
-  
-				circleTooltipg.append("rect")
-						.attr("id", "circletooltipRect_" + mainDivName)
-						.attr("x", 0)
-						.attr("width", 120)
-						.attr("height", 80)
-						.attr("opacity", 0.71)
-						.style("fill", "#000000");
+					//CBT: calculate width of the text based on characters
+					var dims = helpers.getDimensions("circletooltipText_" + mainDivName);
+					d3.selectAll("#circletooltipText_" + mainDivName + " tspan")
+							.attr("x", dims.w + 4);
 			
-				circleTooltipg
-						.append("text")
-						.attr("id", "circletooltipText_" + mainDivName)
-						.attr("x", 30)
-						.attr("y", 15)
-						.attr("fill", function () {
-								return "#fff"
-						})
-						.style("font-size", function (d) {
-								return 10;
-						})
-						.style("font-family", function (d) {
-								return "'Roboto', sans-serif";
-						})
-						.text(function (d, i) {
-								return "";
-						});
+					d3.selectAll("#circletooltipRect_" + mainDivName)
+							.attr("width", dims.w + 10)
+							.attr("height", dims.h + 20);
+			});
 
-		});
+			circles.on("mousemove", function () {
+					d3.selectAll("#circletooltip_" + mainDivName)
+							.attr("transform", function (d) {
+							var mouseCoords = d3.mouse(this.parentNode);
+							var xCo = 0;
+							if (mouseCoords[0] + 10 >= width * 0.80) {
+									xCo = mouseCoords[0] - parseFloat(d3.selectAll("#circletooltipRect_" + mainDivName)
+									.attr("width"));
+							} else {
+									xCo = mouseCoords[0] + 10;
+							}
+							var x = xCo;
+							var yCo = 0;
+							if (mouseCoords[0] + 10 >= width * 0.80) {
+									yCo = mouseCoords[1] + 10;
+							} else {
+									yCo = mouseCoords[1];
+							}
+							var x = xCo;
+							var y = yCo;
+							return "translate(" + x + "," + y + ")";
+					});
+			});
+
+			circles.on("mouseout", function () {
+					d3.select("#circletooltip_" + mainDivName)
+							.style("opacity", function () {
+							return 0;
+							})
+							.attr("transform", function (d, i) {
+							// klutzy, but it accounts for tooltip padding which could push it onscreen
+							var x = -500;
+							var y = -500;
+							return "translate(" + x + "," + y + ")";
+							});
+			});
+
+			var circleTooltipg = svg.append("g")
+					.attr("font-family", "'Roboto', sans-serif")
+					.attr("font-size", 10)
+					.attr("text-anchor", "end")
+					.attr("id", "circletooltip_" + mainDivName)
+					.attr("style", "opacity:0")
+					.attr("transform", "translate(-500,-500)");
+
+			circleTooltipg.append("rect")
+					.attr("id", "circletooltipRect_" + mainDivName)
+					.attr("x", 0)
+					.attr("width", 120)
+					.attr("height", 80)
+					.attr("opacity", 0.71)
+					.style("fill", "#000000");
+		
+			circleTooltipg
+					.append("text")
+					.attr("id", "circletooltipText_" + mainDivName)
+					.attr("x", 30)
+					.attr("y", 15)
+					.attr("fill", function () {
+							return "#fff"
+					})
+					.style("font-size", function (d) {
+							return 10;
+					})
+					.style("font-family", function (d) {
+							return "'Roboto', sans-serif";
+					})
+					.text(function (d, i) {
+							return "";
+					});
+
+	});
 	</script>
 </html>
