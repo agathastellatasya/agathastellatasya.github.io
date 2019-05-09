@@ -130,9 +130,17 @@ function drawmultiSeriesLineChartCharts(config) {
             .text(label.xAxis);
     }
 
+    var local = d3.formatLocale({
+        "decimal": ",",
+        "thousands": ".",
+        grouping: [3]
+    });
+
+    var format = local.format(",");
+
     g.append("g")
         .attr("class", "axis axis--y")
-        .call(d3.axisLeft(y))
+        .call(d3.axisLeft(y).tickFormat(format))
         .append("text")
         .attr("y", -10)
         .attr("fill", "#000")
